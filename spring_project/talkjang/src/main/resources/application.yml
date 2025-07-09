@@ -1,0 +1,58 @@
+server:
+  port: 8080
+
+spring:
+  servlet:
+    multipart:
+      maxFileSize: 10MB # 파일 하나의 최대 크기
+      maxRequestSize: 30MB  # 한 번에 최대 업로드 가능 용량
+
+  # database
+  datasource:
+    url: jdbc:mysql://localhost:3306/talkjang?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root  # -> ?? ???? MySQL username ??
+    password: lkmasz12  # -> ?? ???? MySQL ???? ??
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # jpa
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+        show_sql: true
+ # redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+  security:
+    oauth2:
+      client:
+        # OAuth2 인증 제공자(카카오)에 대한 설정 정보를 포함합니다.
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            token-uri: https://kauth.kakao.com/oauth/token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            user-name-attribute: id
+        # 클라이언트 애플리케이션(Spring Boot)에 대한 설정을 포함합니다.
+        registration:
+          kakao:
+            client-id: 5fa11687d74dfcfd8986f2b3113fbd2c
+            client-secret: Mrd56J9M0Xvl0Jcr6URd61GPBFZuAkPz
+            redirect-uri: http://localhost:8080/oauth/kakao
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            client-name: kakao
+            scope:
+              - name
+              - profile_nickname
+              - account_email
+
+jwt:
+  key: YOOOAUUUUQQQOOOOWWOOEERIMMMFJAAKLXSIJSKLSDKENRLSKSDLKFJSGIOJISJDFOO
+
+kakao-pay:
+  key: DEV203C967B2EB9B8FA813B3D700E3EAFCD5714E
+  cid: TC0ONETIME
