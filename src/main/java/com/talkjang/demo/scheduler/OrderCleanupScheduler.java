@@ -26,7 +26,6 @@ import java.util.List;
 public class OrderCleanupScheduler {
 
     private final OrdersRepository ordersRepository;
-    private final UserRepository userRepository;
     private final KakaoPayService kakaoPayService;
     private final NotificationService notificationService;
 
